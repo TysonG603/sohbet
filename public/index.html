@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1020" />
+  <title>Sohbet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+
+  <!-- Giriş ekranı -->
+  <section id="login" class="login">
+    <form id="loginForm" class="login-card" autocomplete="off">
+      <div class="logo">💬</div>
+      <h1>Sohbet</h1>
+      <p class="subtitle">Bir kullanıcı adı seç ve hemen sohbete katıl.</p>
+      <label class="field">
+        <span>Kullanıcı adı</span>
+        <input id="nameInput" type="text" maxlength="20" placeholder="örn. ayse" required autofocus />
+      </label>
+      <p id="loginError" class="error" role="alert"></p>
+      <button id="loginBtn" type="submit" class="btn-primary">Sohbete Gir →</button>
+    </form>
+  </section>
+
+  <!-- Sohbet ekranı -->
+  <section id="chat" class="chat hidden">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-head">
+        <div class="brand"><span class="logo-sm">💬</span> Sohbet</div>
+        <button id="closeSidebar" class="icon-btn only-mobile" aria-label="Kapat">✕</button>
+      </div>
+      <div class="me">
+        <div id="meAvatar" class="avatar"></div>
+        <div>
+          <div id="meName" class="me-name"></div>
+          <div class="me-status"><span class="dot"></span> Çevrimiçi</div>
+        </div>
+      </div>
+      <h3 class="section-title">Çevrimiçi — <span id="userCount">0</span></h3>
+      <ul id="userList" class="user-list"></ul>
+      <button id="logoutBtn" class="btn-ghost">Çıkış yap</button>
+    </aside>
+    <div id="backdrop" class="backdrop"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="openSidebar" class="icon-btn only-mobile" aria-label="Kullanıcılar">☰</button>
+        <div>
+          <h2># genel</h2>
+          <p id="topbarInfo" class="topbar-info">Bağlanıyor…</p>
+        </div>
+      </header>
+
+      <div id="messages" class="messages"></div>
+
+      <div id="typing" class="typing"></div>
+
+      <form id="messageForm" class="composer" autocomplete="off">
+        <textarea id="messageInput" rows="1" maxlength="1000" placeholder="Bir mesaj yaz…"></textarea>
+        <button type="submit" class="send-btn" aria-label="Gönder">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg>
+        </button>
+      </form>
+    </main>
+  </section>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
